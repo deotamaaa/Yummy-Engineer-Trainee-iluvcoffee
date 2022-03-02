@@ -1,3 +1,4 @@
+import { LargeNumberLike } from "crypto";
 import { type } from "os";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Flavor } from "./flavor.entity";
@@ -12,6 +13,9 @@ export class Coffee {
 
     @Column()
     brand: string;
+
+    @Column({ default: 0 })
+    recommendations: number;
 
     @JoinTable()
     @ManyToMany(
