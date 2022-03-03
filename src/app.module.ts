@@ -7,6 +7,7 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { type } from 'os';
 import { toUnicode } from 'punycode';
+import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { toUnicode } from 'punycode';
       database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
-    })
+    }),
+    CoffeeRatingModule
   ],
   controllers: [AppController],
   providers: [AppService],
