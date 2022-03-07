@@ -9,6 +9,7 @@ import { type } from 'os';
 import { toUnicode } from 'punycode';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { APP_PIPE } from '@nestjs/core';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { APP_PIPE } from '@nestjs/core';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    CoffeeRatingModule
+    CoffeeRatingModule,
+    CommonModule
   ],
   controllers: [AppController],
   providers: [AppService,
