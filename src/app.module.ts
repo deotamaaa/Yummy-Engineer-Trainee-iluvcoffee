@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesController } from './coffees/coffees.controller';
@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { type } from 'os';
 import { toUnicode } from 'punycode';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -25,6 +26,10 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
     CoffeeRatingModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,
+    {
+      provide: APP_PIPE,
+      useValue: ValidationPipe
+    }],
 })
 export class AppModule { }
