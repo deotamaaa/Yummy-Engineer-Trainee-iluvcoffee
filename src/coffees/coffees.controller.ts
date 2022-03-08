@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, SetMetadata, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
@@ -12,7 +13,7 @@ export class CoffeesController {
     @Public()
     @UsePipes(ValidationPipe)
     @Get()
-    findAll(@Query() paginationQuery: PaginationQueryDto) {
+    async findAll(@Protocol() protocol: string, @Query() paginationQuery: PaginationQueryDto) {
         // const { limit, offset } = paginationQuery;
         return this.coffeesService.findAll(paginationQuery);
     }
